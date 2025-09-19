@@ -128,7 +128,7 @@ const ArtworkPage = () => {
               </p>
               {(artwork.audioSrc || artwork.videoSrc || artwork.textContent) && (
                 <p className="text-xs text-muted-foreground mt-2">
-                  ✨ Conteúdo interativo disponível acima
+                  ✨ Conteúdo interativo disponível abaixo
                 </p>
               )}
             </div>

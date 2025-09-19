@@ -40,11 +40,11 @@ const Home = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mt-8">
               <div className="flex items-center gap-2">
                 <Calendar size={18} className="text-primary" />
-                <span>2024</span>
+                <span>2025</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users size={18} className="text-primary" />
-                <span>10 Artistas Estudantes</span>
+                <span>+50 Artistas Estudantes</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-primary" />
