@@ -7,9 +7,10 @@ export interface Artwork {
   description?: string;
   imageSrc: string;
   thumbnailSrc?: string;
-  mediaType?: 'image' | 'audio' | 'video';
+  mediaType?: 'image' | 'audio' | 'video' | 'text';
   audioSrc?: string;
   videoSrc?: string;
+  textContent?: string;
 }
 
 export type Category = Artwork['category'];

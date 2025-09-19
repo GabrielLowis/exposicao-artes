@@ -52,7 +52,8 @@ export const artworks: Artwork[] = [
     description: 'Experimentação com instrumentos não convencionais inspirada nas propostas da Semana de 22.',
     imageSrc: musicSample,
     thumbnailSrc: musicSample,
-    mediaType: 'audio'
+    mediaType: 'audio',
+    audioSrc: 'https://www.soundjay.com/misc/sounds/beep-07a.wav'
   },
 
   // Literatura
@@ -65,7 +66,35 @@ export const artworks: Artwork[] = [
     description: 'Poesia slam contemporânea inspirada nos manifestos modernistas, abordando questões atuais da juventude brasileira.',
     imageSrc: literatureSample,
     thumbnailSrc: literatureSample,
-    mediaType: 'image'
+    mediaType: 'text',
+    textContent: `MANIFESTO 2.0
+
+Queremos a revolução digital!
+Queremos a tela que liberta!
+Queremos o verso que conecta!
+
+Não mais as palavras presas em papel,
+mas bytes que voam, pixels que cantam,
+stories que nascem e morrem em segundos.
+
+Somos a geração do duplo clique,
+do scroll infinito,
+da poesia que se escreve com thumbs.
+
+Devoramos memes como antropófagos,
+mastigamos trends,
+digerimos a cultura mundial
+para regurgitar nossa brasilidade 2.0.
+
+São Paulo não para, o WiFi não para,
+nossa arte não para.
+
+Somos modernistas de smartphone na mão,
+revolucionários de timeline,
+poetas de DM.
+
+Queremos o novo, o agora, o viral!
+Queremos ser hashtag!`
   },
   {
     id: '6',
@@ -76,7 +105,29 @@ export const artworks: Artwork[] = [
     description: 'Narrativa experimental que utiliza técnicas de fluxo de consciência para retratar a São Paulo moderna.',
     imageSrc: literatureSample,
     thumbnailSrc: literatureSample,
-    mediaType: 'image'
+    mediaType: 'text',
+    textContent: `MEMÓRIAS FRAGMENTADAS
+
+1.
+O metrô range. Cinco da manhã. Luzes frias cortam o sono dos operários. São Paulo acorda antes do sol, como sempre acordou, como sempre acordará.
+
+2.
+Mário de Andrade caminhava por aqui. Será que via o futuro? O concreto que cresce, os pixels que brilham, a poesia que se perde entre notificações?
+
+3.
+"Ai, que preguiça!" - diria Macunaíma. Mas nós não temos preguiça. Corremos. Sempre corremos. Para o trabalho, para casa, para lugar nenhum.
+
+4.
+O café esfria na mesa do escritório. É o mesmo café de 1922? As mesmas folhas, as mesmas raízes, mas o sabor mudou. Tudo mudou.
+
+5.
+Tarsila pintaria hoje? Com que cores? RGB? CMYK? Ou ainda aquele amarelo que só ela sabia misturar?
+
+6.
+A cidade respira através de janelas abertas. Cada respiração uma história. Cada história um fragmento. Cada fragmento uma memória que se perde no tempo.
+
+7.
+São Paulo é um palimpsesto. Camadas sobre camadas. Memórias sobre memórias. O novo construído sobre o antigo, mas nunca apagando completamente o que veio antes.`
   },
 
   // Fotografia
@@ -125,7 +176,8 @@ export const artworks: Artwork[] = [
     description: 'Interpretação corporal das obras de Di Cavalcanti através da dança expressiva.',
     imageSrc: danceSample,
     thumbnailSrc: danceSample,
-    mediaType: 'video'
+    mediaType: 'video',
+    videoSrc: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
   }
 ];
 

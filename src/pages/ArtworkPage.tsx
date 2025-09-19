@@ -2,24 +2,14 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getArtworkById } from '../data/artworks';
 import { Artwork } from '../types';
-import { 
-  ArrowLeft, 
-  Calendar, 
-  User, 
-  Tag, 
-  Play, 
-  Pause,
-  Volume2,
-  VolumeX 
-} from 'lucide-react';
+import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
+import AudioPlayer from '../components/AudioPlayer';
+import TextReader from '../components/TextReader';
 
 const ArtworkPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [artwork, setArtwork] = useState<Artwork | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (!id) {
@@ -35,36 +25,7 @@ const ArtworkPage = () => {
 
     setArtwork(foundArtwork);
     document.title = `${foundArtwork.title} - ${foundArtwork.author}`;
-
-    // Setup audio element if needed
-    if (foundArtwork.mediaType === 'audio' && foundArtwork.audioSrc) {
-      const audio = new Audio(foundArtwork.audioSrc);
-      audio.addEventListener('ended', () => setIsPlaying(false));
-      setAudioElement(audio);
-
-      return () => {
-        audio.pause();
-        audio.removeEventListener('ended', () => setIsPlaying(false));
-      };
-    }
   }, [id, navigate]);
-
-  const toggleAudio = () => {
-    if (!audioElement) return;
-
-    if (isPlaying) {
-      audioElement.pause();
-    } else {
-      audioElement.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const toggleMute = () => {
-    if (!audioElement) return;
-    audioElement.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
 
   if (!artwork) {
     return null; // Loading or redirecting
@@ -95,31 +56,14 @@ const ArtworkPage = () => {
               />
             </div>
 
-            {/* Audio Controls */}
+            {/* Text Content */}
+            {artwork.mediaType === 'text' && artwork.textContent && (
+              <TextReader content={artwork.textContent} title={artwork.title} />
+            )}
+
+            {/* Audio Player */}
             {artwork.mediaType === 'audio' && artwork.audioSrc && (
-              <div className="flex items-center justify-center gap-4 p-6 bg-surface rounded-lg">
-                <button
-                  onClick={toggleAudio}
-                  className="flex items-center justify-center w-12 h-12 bg-primary text-primary-foreground rounded-full hover:scale-110 transition-transform"
-                  aria-label={isPlaying ? 'Pausar áudio' : 'Reproduzir áudio'}
-                >
-                  {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-                </button>
-                
-                <div className="flex-1 text-center">
-                  <p className="text-sm text-muted-foreground">
-                    {isPlaying ? 'Reproduzindo...' : 'Clique para ouvir'}
-                  </p>
-                </div>
-                
-                <button
-                  onClick={toggleMute}
-                  className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
-                  aria-label={isMuted ? 'Ativar som' : 'Silenciar'}
-                >
-                  {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-                </button>
-              </div>
+              <AudioPlayer audioSrc={artwork.audioSrc} title={artwork.title} />
             )}
 
             {/* Video Player */}
@@ -176,11 +120,17 @@ const ArtworkPage = () => {
             <div className="p-6 bg-surface rounded-lg">
               <h3 className="font-semibold mb-2">Sobre esta obra</h3>
               <p className="text-muted-foreground text-sm">
-                {artwork.mediaType === 'audio' && 'Composição musical disponível para audição.'}
-                {artwork.mediaType === 'video' && 'Performance em vídeo disponível para visualização.'}
+                {artwork.mediaType === 'audio' && 'Composição musical com player de áudio interativo.'}
+                {artwork.mediaType === 'video' && 'Performance em vídeo com controles de reprodução.'}
+                {artwork.mediaType === 'text' && 'Texto literário com opções de leitura e cópia.'}
                 {artwork.mediaType === 'image' && 'Obra visual em formato digital.'}
                 {!artwork.mediaType && 'Obra em formato digital.'}
               </p>
+              {(artwork.audioSrc || artwork.videoSrc || artwork.textContent) && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  ✨ Conteúdo interativo disponível acima
+                </p>
+              )}
             </div>
 
             {/* Navigation to Category */}

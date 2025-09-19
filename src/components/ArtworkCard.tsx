@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Artwork } from '../types';
-import { Play, Book, Volume2, Eye } from 'lucide-react';
+import { Play, Book, Volume2, Eye, Camera } from 'lucide-react';
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -10,11 +10,21 @@ const mediaIcons = {
   image: Eye,
   audio: Volume2,
   video: Play,
-  default: Book
+  text: Book,
+  default: Camera
+};
+
+const mediaLabels = {
+  image: '🖼 Imagem',
+  audio: '🎵 Música', 
+  video: '🎬 Vídeo',
+  text: '📄 Texto',
+  default: '📷 Foto'
 };
 
 const ArtworkCard = ({ artwork }: ArtworkCardProps) => {
   const Icon = mediaIcons[artwork.mediaType || 'default'];
+  const label = mediaLabels[artwork.mediaType || 'default'];
 
   return (
     <article className="art-card group">
@@ -32,8 +42,13 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps) => {
           />
           
           {/* Media type indicator */}
-          <div className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full">
+          <div className="absolute top-3 right-3 p-2 bg-background/90 backdrop-blur-sm rounded-full">
             <Icon size={16} className="text-primary" />
+          </div>
+          
+          {/* Media type label */}
+          <div className="absolute bottom-3 left-3 px-2 py-1 bg-background/90 backdrop-blur-sm rounded text-xs font-medium text-foreground">
+            {label}
           </div>
           
           {/* Gradient overlay */}
