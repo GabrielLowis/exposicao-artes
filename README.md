@@ -1,73 +1,154 @@
-# Welcome to your Lovable project
+# Semana de Arte Moderna - Exposição Digital 2024
 
-## Project info
+Uma exposição escolar digital celebrando 102 anos da Semana de Arte Moderna de 1922, apresentando obras contemporâneas de estudantes inspiradas nos ideais modernistas brasileiros.
 
-**URL**: https://lovable.dev/projects/a147f954-ebcd-420e-b329-552bfeb33949
+## 🎨 Sobre o Projeto
 
-## How can I edit this code?
+Este site foi desenvolvido como uma plataforma expositiva para apresentar obras de arte criadas por estudantes, abrangendo cinco categorias artísticas:
 
-There are several ways of editing your application.
+- **Pintura** - Reinterpretações contemporâneas das vanguardas pictóricas
+- **Música** - Composições experimentais e fusões sonoras
+- **Literatura** - Textos inspirados no movimento antropófago
+- **Fotografia** - Registros visuais da modernidade urbana
+- **Dança** - Performances que dialogam entre ancestral e contemporâneo
 
-**Use Lovable**
+## 🚀 Tecnologias Utilizadas
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a147f954-ebcd-420e-b329-552bfeb33949) and start prompting.
+- **Vite** - Build tool e servidor de desenvolvimento
+- **React 18** - Biblioteca para interface de usuário
+- **TypeScript** - Tipagem estática para JavaScript
+- **TailwindCSS** - Framework CSS utilitário
+- **React Router** - Roteamento client-side
+- **Lucide React** - Ícones SVG
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📦 Instalação
 
-**Use your preferred IDE**
+1. Clone o repositório:
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd semana-arte-moderna
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Execute em modo de desenvolvimento:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+O site estará disponível em `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🏗️ Estrutura do Projeto
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/          # Componentes reutilizáveis
+│   ├── Header.tsx       # Cabeçalho com navegação
+│   ├── CategorySelector.tsx  # Seletor de categorias
+│   ├── GalleryGrid.tsx  # Grid de exibição das obras
+│   └── ArtworkCard.tsx  # Card individual de obra
+├── pages/              # Páginas da aplicação
+│   ├── Home.tsx        # Página inicial
+│   ├── ExposicaoPage.tsx    # Página de categoria
+│   ├── ArtworkPage.tsx # Página de obra individual
+│   └── NotFound.tsx    # Página 404
+├── data/               # Dados mock
+│   └── artworks.ts     # Base de dados das obras
+├── types/              # Definições TypeScript
+│   └── index.ts        # Interfaces e tipos
+├── assets/             # Recursos estáticos
+│   └── *.jpg           # Imagens das obras
+└── index.css           # Estilos globais e design system
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎯 Funcionalidades
 
-## What technologies are used for this project?
+### Navegação
+- **Home (/)** - Página inicial com hero section e obras em destaque
+- **Exposição (/exposicao/:categoria)** - Visualização por categoria
+- **Obra (/obra/:id)** - Detalhes individuais de cada obra
 
-This project is built with:
+### Recursos
+- Design responsivo (mobile-first)
+- Modo escuro nativo
+- Reprodução de áudio para obras musicais
+- Player de vídeo para performances de dança
+- Transições suaves e efeitos hover
+- Navegação por teclado e acessibilidade
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Design System
+Paleta de cores inspirada na arte moderna brasileira:
+- **Magenta**: #E4007C
+- **Ciano**: #00C2FF  
+- **Amarelo**: #FFC857
+- **Verde-azulado**: #3DDC97
+- **Coral**: #FF6B6B
 
-## How can I deploy this project?
+## 🔄 Personalização
 
-Simply open [Lovable](https://lovable.dev/projects/a147f954-ebcd-420e-b329-552bfeb33949) and click on Share -> Publish.
+### Adicionando Novas Obras
 
-## Can I connect a custom domain to my Lovable project?
+Edite o arquivo `src/data/artworks.ts` e adicione novos objetos seguindo a interface:
 
-Yes, you can!
+```typescript
+{
+  id: string;
+  title: string;
+  author: string;
+  category: 'Pintura'|'Musica'|'Literatura'|'Fotografia'|'Danca';
+  year?: number;
+  description?: string;
+  imageSrc: string;
+  thumbnailSrc?: string;
+  mediaType?: 'image'|'audio'|'video';
+  audioSrc?: string;
+  videoSrc?: string;
+}
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Conectando com API
+Para substituir os dados mock por uma API real, modifique as funções em `src/data/artworks.ts`:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```typescript
+// Exemplo de integração com API
+export const getArtworksByCategory = async (category: string) => {
+  const response = await fetch(`/api/artworks?category=${category}`);
+  return response.json();
+};
+```
+
+## 📱 Deploy
+
+### Vercel
+```bash
+npm run build
+# Conecte o repositório ao Vercel
+```
+
+### Netlify
+```bash
+npm run build
+# Faça upload da pasta dist/
+```
+
+### Outros provedores
+O projeto gera arquivos estáticos na pasta `dist/` após executar `npm run build`.
+
+## 🎓 Contexto Educacional
+
+Este projeto foi desenvolvido para:
+- Ensinar desenvolvimento web moderno
+- Celebrar a herança cultural da Semana de Arte Moderna
+- Proporcionar uma plataforma digital para jovens artistas
+- Demonstrar a aplicação de tecnologias contemporâneas na preservação cultural
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+---
+
+**Projeto desenvolvido para fins educacionais - Celebrando a vanguarda artística brasileira através da tecnologia contemporânea.**
