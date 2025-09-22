@@ -90,13 +90,13 @@ const ArtworkPage = () => {
               </div>
             </div>
 
-            {artwork.description && (
+            {/* {artwork.description && (
               <div className="prose prose-lg prose-invert max-w-none">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {artwork.description}
                 </p>
               </div>
-            )}
+            )} */}
 
             {/* Media Type Info */}
             <div className="p-6 bg-surface rounded-lg">

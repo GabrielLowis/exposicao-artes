@@ -73,11 +73,11 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps) => {
             {artwork.category}
           </span>
           
-          {artwork.description && (
+          {/* {artwork.description && (
             <p className="text-sm text-muted-foreground line-clamp-2 mt-2">
               {artwork.description}
             </p>
-          )}
+          )} */}
         </div>
       </Link>
     </article>
