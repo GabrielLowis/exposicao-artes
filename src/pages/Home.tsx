@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section className="min-h-screen poppins flex items-center justify-center relative overflow-hidden">
         {/* Background gradient */}
         <div 
           className="absolute inset-0 opacity-20"

@@ -17,7 +17,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Header />
+        {/* <Header /> */}
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
